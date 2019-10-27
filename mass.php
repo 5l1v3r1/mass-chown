@@ -12,8 +12,8 @@ function buka($dir,$user){
         if($ss == "." || $ss == ".."){continue;}else{
             if(is_dir($dir."/".$ss."/")){
                 echo "[*] $user:$user => $dir/$ss/\n";
-                system("chown $user:$user *");
-                buka($dir."/".$ss."/");
+                system("chown $user:$user $dir/$ss/*");
+                buka($dir."/".$ss."/",$user);
             }
         }
     }
