@@ -11,9 +11,12 @@ function buka($dir,$user){
     foreach($s as $ss){
         if($ss == "." || $ss == ".."){continue;}else{
             if(is_dir($dir."/".$ss."/")){
-                echo "[*] $user:$user => $dir/$ss/\n";
-                system("chown $user:$user $dir/$ss/*");
+                echo "[*] $user:$user => $ss\n";
+                system("chown $user:$user '$dir/$ss/'");
                 buka($dir."/".$ss."/",$user);
+            }else{
+                echo "[*] $user:$user => $ss\n";
+                system("chown $user:$user '$dir/$ss'");
             }
         }
     }
